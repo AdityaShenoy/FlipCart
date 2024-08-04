@@ -5,8 +5,8 @@
     title "ER Diagram"
 
     object User {
-        username: str(50)
-        email: str(50)
+        username (U): str(50)
+        email (U): str(50)
         password: str(50)
     }
 

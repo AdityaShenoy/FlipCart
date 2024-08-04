@@ -8,6 +8,8 @@
         username (U): str(50)
         email (U): str(50)
         password: str(50)
+        first_name: str(50)
+        last_name: str(50)
     }
 
 @enduml

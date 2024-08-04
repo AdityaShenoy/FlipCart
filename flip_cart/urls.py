@@ -20,6 +20,6 @@ import django.urls as du
 
 
 urlpatterns = [
-    du.path("admin/", dca.site.urls),
-    du.path("users/", du.include("users.urls")),
+    du.path("admin", dca.site.urls),
+    du.path("users", du.include("users.urls")),
 ]

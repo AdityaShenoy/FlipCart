@@ -52,7 +52,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "FlipCart.urls"
+ROOT_URLCONF = "flip_cart.urls"
 
 TEMPLATES: list[dict[str, t.Any]] = [
     {
@@ -70,7 +70,7 @@ TEMPLATES: list[dict[str, t.Any]] = [
     },
 ]
 
-WSGI_APPLICATION = "FlipCart.wsgi.application"
+WSGI_APPLICATION = "flip_cart.wsgi.application"
 
 
 # Database

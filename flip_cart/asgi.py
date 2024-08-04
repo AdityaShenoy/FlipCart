@@ -11,6 +11,6 @@ import django.core.asgi as dca
 import os
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "FlipCart.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "flip_cart.settings")
 
 application = dca.get_asgi_application()

@@ -11,6 +11,6 @@ import django.core.wsgi as dcw
 import os
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "FlipCart.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "flip_cart.settings")
 
 application = dcw.get_wsgi_application()

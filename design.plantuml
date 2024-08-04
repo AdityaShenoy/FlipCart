@@ -21,19 +21,17 @@
     title "Sequence Diagram"
 
     actor User
-    participant Browser
     participant urls
     participant users.urls
     participant users.views.post
     database DB
 
     == POST /users ==
-    User             ->  Browser          : POST /users
-    Browser          ->  urls             : POST /users
+    User             ->  urls             : POST /users
     urls             ->  users.urls       : POST /
     users.urls       ->  users.views.post : POST /
     users.views.post ->  DB               : INSERT
     users.views.post <-- DB               : SUCCESS
-    Browser          <-- users.views.post : 201 Created
+    User             <-- users.views.post : 201 Created
 
 @enduml

@@ -34,9 +34,6 @@
     users.urls       ->  users.views.post : POST /
     users.views.post ->  DB               : INSERT
     users.views.post <-- DB               : SUCCESS
-    users.urls       <-- users.views.post : 201 Created
-    urls             <-- users.urls       : 201 Created
-    Browser          <-- urls             : 201 Created
-    User             <-- Browser          : 201 Created
+    Browser          <-- users.views.post : 201 Created
 
 @enduml

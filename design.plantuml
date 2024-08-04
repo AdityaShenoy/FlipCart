@@ -1,0 +1,40 @@
+@startuml er_diagram
+
+    !theme hacker
+    skinparam BackgroundColor black
+    title "ER Diagram"
+
+    object User {
+        username: str(50)
+        email: str(50)
+        password: str(50)
+    }
+
+@enduml
+
+@startuml sequence_diagram
+
+    !theme hacker
+    skinparam BackgroundColor black
+    title "Sequence Diagram"
+
+    actor User
+    participant Browser
+    participant urls
+    participant users.urls
+    participant users.views.post
+    database DB
+
+    == POST /users ==
+    User             ->  Browser          : POST /users
+    Browser          ->  urls             : POST /users
+    urls             ->  users.urls       : POST /
+    users.urls       ->  users.views.post : POST /
+    users.views.post ->  DB               : INSERT
+    users.views.post <-- DB               : SUCCESS
+    users.urls       <-- users.views.post : 201 Created
+    urls             <-- users.urls       : 201 Created
+    Browser          <-- urls             : 201 Created
+    User             <-- Browser          : 201 Created
+
+@enduml

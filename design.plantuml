@@ -24,14 +24,14 @@
     participant urls
     participant users.urls
     participant users.views.post
-    database DB
+    database "User DB"
 
     == POST /users ==
     User             ->  urls             : POST /users
     urls             ->  users.urls       : POST /
     users.urls       ->  users.views.post : POST /
-    users.views.post ->  DB               : INSERT
-    users.views.post <-- DB               : SUCCESS
+    users.views.post ->  "User DB"        : INSERT
+    users.views.post <-- "User DB"        : SUCCESS
     User             <-- users.views.post : 201 Created
 @enduml
 
@@ -45,13 +45,13 @@
     participant urls
     participant auths.urls
     participant auths.views.post
-    database DB
+    database Session
 
     == POST /auths ==
     User             ->  urls             : POST /auths
     urls             ->  auths.urls       : POST /
     auths.urls       ->  auths.views.post : POST /
-    auths.views.post ->  DB               : INSERT
-    auths.views.post <-- DB               : SUCCESS
-    User             <-- auths.views.post : 201 Created
+    auths.views.post ->  Session          : INSERT
+    auths.views.post <-- Session          : SUCCESS
+    User             <-- auths.views.post : 200 OK
 @enduml

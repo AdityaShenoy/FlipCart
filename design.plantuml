@@ -1,4 +1,4 @@
-@startuml er_diagram
+@startuml 1
 
     !theme hacker
     skinparam BackgroundColor black
@@ -14,7 +14,7 @@
 
 @enduml
 
-@startuml sequence_diagram
+@startuml 2
 
     !theme hacker
     skinparam BackgroundColor black
@@ -33,5 +33,25 @@
     users.views.post ->  DB               : INSERT
     users.views.post <-- DB               : SUCCESS
     User             <-- users.views.post : 201 Created
+@enduml
 
+@startuml 3
+
+    !theme hacker
+    skinparam BackgroundColor black
+    title "Sequence Diagram"
+
+    actor User
+    participant urls
+    participant auths.urls
+    participant auths.views.post
+    database DB
+
+    == POST /auths ==
+    User             ->  urls             : POST /auths
+    urls             ->  auths.urls       : POST /
+    auths.urls       ->  auths.views.post : POST /
+    auths.views.post ->  DB               : INSERT
+    auths.views.post <-- DB               : SUCCESS
+    User             <-- auths.views.post : 201 Created
 @enduml

@@ -16,6 +16,8 @@
         name: str(50)
         description: str(50)
         seller: User
+        mrp: int // paise
+        price: int // paise
     }
 
     User <|-- Item : is sold by

@@ -1,9 +1,9 @@
 | Backlog             | In Progress | Completed        |
 | ------------------- | ----------- | ---------------- |
-|                     | POST /items | sprint 1 - 4-Aug |
+| GET /item/id        | GET /items  | sprint 1 - 4-Aug |
 |                     |             | POST /users      |
-| GET /items          |             | POST /auths      |
-| POST /cart-items    |             |                  |
+|                     |             | POST /auths      |
+| POST /cart-items    |             | POST /items      |
 | GET /cart-items     |             |                  |
 | POST /payments      |             |                  |
 | GET /payments       |             |                  |

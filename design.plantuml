@@ -26,10 +26,10 @@
     participant users.views.post
     database "User DB"
 
-    == POST /users ==
-    User             ->  urls             : POST /users
-    urls             ->  users.urls       : POST /
-    users.urls       ->  users.views.post : POST /
+    == post /users ==
+    User             ->  urls             : post /users
+    urls             ->  users.urls       : post /
+    users.urls       ->  users.views.post : post /
     users.views.post ->  "User DB"        : INSERT
     users.views.post <-- "User DB"        : SUCCESS
     User             <-- users.views.post : 201 Created
@@ -47,10 +47,10 @@
     participant auths.views.post
     database Session
 
-    == POST /auths ==
-    User             ->  urls             : POST /auths
-    urls             ->  auths.urls       : POST /
-    auths.urls       ->  auths.views.post : POST /
+    == post /auths ==
+    User             ->  urls             : post /auths
+    urls             ->  auths.urls       : post /
+    auths.urls       ->  auths.views.post : post /
     auths.views.post ->  Session          : INSERT
     auths.views.post <-- Session          : SUCCESS
     User             <-- auths.views.post : 200 OK

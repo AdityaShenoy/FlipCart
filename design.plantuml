@@ -14,7 +14,7 @@
 
     object Item {
         name: str(50)
-        description: str(50)
+        description: str(500)
         seller: User
         mrp: int // paise
         price: int // paise

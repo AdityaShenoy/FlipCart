@@ -23,4 +23,5 @@ urlpatterns = [
     du.path("admin", dca.site.urls),
     du.path("users", du.include("users.urls")),
     du.path("auths", du.include("auths.urls")),
+    du.path("items", du.include("items.urls")),
 ]

@@ -13,8 +13,8 @@ class Test(dt.TestCase):
         response = self.client.post(fcu.USERS, input_)
         fta.assert_equal_responses(response, fcru.USER_CREATED)
         user = um.User.objects.get(pk=1)
-        user.username = input_["username"]
-        user.email = input_["email"]
-        user.first_name = input_["first_name"]
-        user.last_name = input_["last_name"]
+        assert user.username == input_["username"]
+        assert user.email == input_["email"]
+        assert user.first_name == input_["first_name"]
+        assert user.last_name == input_["last_name"]
         user.check_password(input_["password"])

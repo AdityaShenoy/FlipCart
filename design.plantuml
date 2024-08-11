@@ -57,6 +57,7 @@
     participant auths.views.post
     database Session
 
+    == post /users ==
     == post /auths ==
     User             ->  urls             : post /auths
     urls             ->  auths.urls       : post /
@@ -78,6 +79,8 @@
     participant items.views.post
     database Item
 
+    == post /users ==
+    == post /auths ==
     == post /items ==
     User             ->  urls             : post /items
     urls             ->  items.urls       : post /

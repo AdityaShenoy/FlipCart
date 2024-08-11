@@ -12,6 +12,14 @@
         last_name: str(50)
     }
 
+    object Item {
+        name: str(50)
+        description: str(50)
+        seller: User
+    }
+
+    User <|-- Item : is sold by
+
 @enduml
 
 @startuml 2
@@ -54,4 +62,25 @@
     auths.views.post ->  Session          : INSERT
     auths.views.post <-- Session          : SUCCESS
     User             <-- auths.views.post : 200 OK
+@enduml
+
+@startuml 4
+
+    !theme hacker
+    skinparam BackgroundColor black
+    title "Sequence Diagram"
+
+    actor User
+    participant urls
+    participant items.urls
+    participant items.views.post
+    database Item
+
+    == post /items ==
+    User             ->  urls             : post /items
+    urls             ->  items.urls       : post /
+    items.urls       ->  items.views.post : post /
+    items.views.post ->  Item             : INSERT
+    items.views.post <-- Item             : SUCCESS
+    User             <-- items.views.post : 200 OK
 @enduml

@@ -1,1 +1,2 @@
 USERS = "/users"
+AUTHS = "/auths"

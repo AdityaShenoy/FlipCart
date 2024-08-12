@@ -10,3 +10,8 @@
 | POST /orders        |             |                  |
 | GET /orders         |             |                  |
 | add form validation |             |                  |
+| docker              |             |                  |
+| django file explain |             |                  |
+| deploy aws          |             |                  |
+| search              |             |                  |
+| review + txn        |             |                  |

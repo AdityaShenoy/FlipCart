@@ -12,7 +12,7 @@
         last_name: str(50)
     }
 
-    object Item {
+    object .models.Item {
         name: str(50)
         description: str(500)
         seller: User
@@ -20,7 +20,7 @@
         price: int // paise
     }
 
-    User <|-- Item : is sold by
+    User <|-- .models.Item : is sold by
 
 @enduml
 
@@ -32,17 +32,18 @@
 
     actor User
     participant urls
-    participant users.urls
-    participant users.views.post
-    database "User DB"
+    box users
+    participant .urls
+    participant .views.post
+    database .models.User
 
     == post /users ==
-    User             ->  urls             : post /users
-    urls             ->  users.urls       : post /
-    users.urls       ->  users.views.post : post /
-    users.views.post ->  "User DB"        : INSERT
-    users.views.post <-- "User DB"        : SUCCESS
-    User             <-- users.views.post : 201 Created
+    User        ->   urls        : post /users
+    urls        ->  .urls        : post /
+    .urls       ->  .views.post  :
+    .views.post ->  .models.User : INSERT
+    .views.post <-- .models.User : SUCCESS
+    User        <-- .views.post  : 201 Created
 @enduml
 
 @startuml 3
@@ -53,18 +54,20 @@
 
     actor User
     participant urls
-    participant auths.urls
-    participant auths.views.post
+    box auths
+    participant .urls
+    participant .views.post
+    end box
     database Session
 
     == post /users ==
     == post /auths ==
-    User             ->  urls             : post /auths
-    urls             ->  auths.urls       : post /
-    auths.urls       ->  auths.views.post : post /
-    auths.views.post ->  Session          : INSERT
-    auths.views.post <-- Session          : SUCCESS
-    User             <-- auths.views.post : 200 OK
+    User        ->  urls        : post /auths
+    urls        ->  .urls       : post /
+    .urls       ->  .views.post :
+    .views.post ->  Session     : INSERT
+    .views.post <-- Session     : SUCCESS
+    User        <-- .views.post : 200 OK
 @enduml
 
 @startuml 4
@@ -75,17 +78,47 @@
 
     actor User
     participant urls
-    participant items.urls
-    participant items.views.post
-    database Item
+    box items
+    participant .urls
+    participant .views.post
+    database .models.Item
 
     == post /users ==
     == post /auths ==
     == post /items ==
-    User             ->  urls             : post /items
-    urls             ->  items.urls       : post /
-    items.urls       ->  items.views.post : post /
-    items.views.post ->  Item             : INSERT
-    items.views.post <-- Item             : SUCCESS
-    User             <-- items.views.post : 200 OK
+    User        ->  urls         : post /items
+    urls        ->  .urls        : post /
+    .urls       ->  .views.post  :
+    .views.post ->  .models.Item : INSERT
+    .views.post <-- .models.Item : SUCCESS
+    User        <-- .views.post  : 201 Created
+@enduml
+
+@startuml 5
+
+    !theme hacker
+    skinparam BackgroundColor black
+    title "Sequence Diagram"
+
+    actor User
+    participant urls
+    box items
+    participant .urls
+    participant views.get
+    participant serializers.ItemSerializer
+    database .models.Item
+
+    == post /users ==
+    == post /auths ==
+    == post /items ==
+    == get /items ==
+    User      ->  urls                       : get /items
+    urls      ->  .urls                      : get /
+    .urls     ->  views.get                  :
+    views.get ->  .models.Item               : SELECT
+    views.get <-- .models.Item               : Items
+    views.get ->  serializers.ItemSerializer : Items
+    views.get <-- serializers.ItemSerializer : Serialized Items
+    User      <-- views.get                  : 200 OK
+    User      <-- views.get                  : {items: {id: item, ...}}
 @enduml

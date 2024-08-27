@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import django.core.wsgi as dcw
+
 import os
 
 

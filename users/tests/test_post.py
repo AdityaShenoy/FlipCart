@@ -4,6 +4,7 @@ import flip_cart.constants.inputs.users as fciu
 import flip_cart.constants.responses.users as fcru
 import flip_cart.constants.urls as fcu
 import flip_cart.tests.assert_equal_responses as fta
+
 import users.models as um
 
 

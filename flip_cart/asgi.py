@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
 """
 
 import django.core.asgi as dca
+
 import os
 
 

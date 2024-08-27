@@ -104,21 +104,21 @@
     participant urls
     box items
     participant .urls
-    participant views.get
-    participant serializers.ItemSerializer
+    participant .views.get
+    participant .serializers.ItemSerializer
     database .models.Item
 
     == post /users ==
     == post /auths ==
     == post /items ==
     == get /items ==
-    User      ->  urls                       : get /items
-    urls      ->  .urls                      : get /
-    .urls     ->  views.get                  :
-    views.get ->  .models.Item               : SELECT
-    views.get <-- .models.Item               : Items
-    views.get ->  serializers.ItemSerializer : Items
-    views.get <-- serializers.ItemSerializer : Serialized Items
-    User      <-- views.get                  : 200 OK
-    User      <-- views.get                  : {items: {id: item, ...}}
+    User       ->  urls                        : get /items
+    urls       ->  .urls                       : get /
+    .urls      ->  .views.get                  :
+    .views.get ->  .models.Item                : SELECT
+    .views.get <-- .models.Item                : Items
+    .views.get ->  .serializers.ItemSerializer : Items
+    .views.get <-- .serializers.ItemSerializer : Serialized Items
+    User       <-- .views.get                  : 200 OK
+    User       <-- .views.get                  : {items: {id: item, ...}}
 @enduml

@@ -116,9 +116,9 @@
     urls       ->  .urls                       : get /
     .urls      ->  .views.get                  :
     .views.get ->  .models.Item                : SELECT
-    .views.get <-- .models.Item                : Items
-    .views.get ->  .serializers.ItemSerializer : Items
-    .views.get <-- .serializers.ItemSerializer : Serialized Items
+    .views.get <-- .models.Item                : items
+    .views.get ->  .serializers.ItemSerializer : items
+    .views.get <-- .serializers.ItemSerializer : serialized items
     User       <-- .views.get                  : 200 OK
     User       <-- .views.get                  : {items: {id: item, ...}}
 @enduml

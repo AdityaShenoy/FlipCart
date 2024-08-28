@@ -120,5 +120,34 @@
     .views.get ->  .serializers.ItemSerializer : items
     .views.get <-- .serializers.ItemSerializer : serialized items
     User       <-- .views.get                  : 200 OK
-    User       <-- .views.get                  : {items: {id: item, ...}}
+    User       <-- .views.get                  : {items: [...]}
+@enduml
+
+@startuml 6
+
+    !theme hacker
+    skinparam BackgroundColor black
+    title "Sequence Diagram"
+
+    actor User
+    participant urls
+    box items
+    participant .urls
+    participant .views.get_id
+    participant .serializers.ItemSerializer
+    database .models.Item
+
+    == post /users ==
+    == post /auths ==
+    == post /items ==
+    == get /items/id ==
+    User          ->  urls                        : get /items/id
+    urls          ->  .urls                       : get /id
+    .urls         ->  .views.get_id               : id
+    .views.get_id ->  .models.Item                : SELECT
+    .views.get_id <-- .models.Item                : item
+    .views.get_id ->  .serializers.ItemSerializer : item
+    .views.get_id <-- .serializers.ItemSerializer : serialized item
+    User          <-- .views.get_id               : 200 OK
+    User          <-- .views.get_id               : item
 @enduml

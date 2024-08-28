@@ -1,8 +1,10 @@
 import rest_framework.views as rv  # type: ignore
 
+from .get import get
 from .post import post
 
 
 class View(rv.APIView):
     def __init__(self):
+        self.get = get
         self.post = post
